@@ -1,0 +1,68 @@
+
+; move a player around the screen
+
+start:
+  sta 70
+  sta 71
+
+input:
+
+  inp
+  ldib 8
+  and
+  jeq up
+
+  inp
+  ldib 4
+  and
+  jeq down
+
+  inp
+  ldib 2
+  and
+  jeq left
+
+  inp
+  ldib 1
+  and
+  jeq right
+
+  jmp draw
+
+left:
+  lda 70
+  ldib 1
+  sub
+  sta 70
+  clr
+  jmp draw
+
+right:
+  lda 70
+  ldib 1
+  add
+  sta 70
+  clr
+  jmp draw
+
+up:
+  lda 71
+  ldib 1
+  sub
+  sta 71
+  clr
+  jmp draw
+
+down:
+  lda 71
+  ldib 1
+  add
+  sta 71
+  clr
+  jmp draw
+
+draw:
+  lda 70
+  ldb 71
+  drw
+  jmp input

@@ -1,0 +1,72 @@
+
+---------------------------------------------------------------------
+
+ain         bus      -->  a
+bin         bus      -->  b
+
+aot         a        -->  bus
+bot         b        -->  bus
+
+mai         bus      -->  mar
+fgi         bus      -->  flgs
+iri         bus      -->  ir
+iro         ir       -->  bus
+
+pci         bus      -->  cnt
+pco         cnt      -->  bus
+pce         cnt + 1  -->  cnt
+end         0        -->  seq
+
+op3         1000     -->  op
+op2         0100     -->  op
+op1         0010     -->  op
+op0         0001     -->  op
+alu         alu      -->  bus
+
+rin         bus      -->  ram
+rot         ram      -->  bus
+
+inp         inp      -->  a
+clr         0        -->  disp
+drw         1        -->  disp @ (a,b)
+
+---------------------------------------------------------------------
+
+00 nop                      0
+01 hlt                      0           --> rom
+
+02 ldia         imt         imt         --> a
+03 ldib         imt         imt         --> b
+
+04 lda          addr        ram @ addr  --> a
+05 ldb          addr        ram @ addr  --> b
+
+06 sta          addr        a           --> ram @ addr
+07 stb          addr        b           --> ram @ addr
+
+08 ldaub                    ram @ b     --> a
+09 staub                    a           --> ram @ b
+
+0a atb                      a           --> b
+
+0b inp                      inp         --> a
+0c clr                      0           --> scr
+0d drw                      1           --> scr @ (a,b)
+
+0e jmp          line        line        --> pc
+0f jc           line        line        --> pc if a >
+10 jz           line        line        --> pc if a == 0
+11 jeq          line        line        --> pc if a == b
+
+12 add                      a +  b      --> a
+13 sub                      a -  b      --> a
+14 mul                      a *  b      --> a
+15 div                      a /  b      --> a
+16 shl                      a << b      --> a
+17 shr                      a >> b      --> a
+
+18 not                        !  a      --> a
+19 and                      a &  b      --> a
+1a or                       a |  b      --> a
+1b xor                      a ^  b      --> a
+1c cmp                                  --> flgs
